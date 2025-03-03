@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "productName": "Apple - Fuji",
+    "price": 4.37,
+    "quantity": 3,
+    "isImported": true,
+    "category": "Food"
+  },
+  {
+    "id": 2,
+    "productName": "Soup Campbells - Italian Wedding",
+    "price": 9.1,
+    "quantity": 4,
+    "isImported": false,
+    "category": "Food"
+  },
+  {
+    "id": 3,
+    "productName": "The Stranger in the Lifeboat",
+    "price": 16.38,
+    "quantity": 7,
+    "isImported": true,
+    "category": "Books"
+  },
+  {
+    "id": 4,
+    "productName": "Dior sauvage 100ml",
+    "price": 73.58,
+    "quantity": 6,
+    "isImported": false,
+    "category": "Parfum"
+  }
+]

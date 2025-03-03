@@ -1,0 +1,25 @@
+<h1>Votre Panier</h1>
+<div class="header">
+<button class="home-button" (click)="goToHome()">Accueil</button>
+</div>
+<div *ngIf="isPanierVide">
+  <p>Panier vide</p>
+</div>
+<div *ngIf="!isPanierVide"  class="panier-container">
+  <div class="product-list">
+    <div *ngFor="let item of items" class="product-container">
+      <div class="product-line">
+        <p class="product-info">Product {{ item.id }}: {{ item.productName }}</p>
+        <p class="product-info">Qté: {{ item.quantity }}</p>
+        <p class="product-info">Taxe:  {{ item.price | multiTransform:'calculateTax':item.category:item.isImported | number:'1.2-2' }} €</p>
+        <p class="product-info">Prix unitaire HT: {{ item.price }} €</p>
+        <p class="product-info">Prix unitaire TTC: {{ item.price | multiTransform:'calculateHTPrice':item.category:item.isImported| number:'1.2-2'}} €</p>
+      </div>
+      <button class="remove-button" (click)="removeFromBasket(item)"></button>
+    </div>
+  </div>
+  <div class="totals">
+    <p class="total-item">Total Taxes: {{ totalTaxes() | number:'1.2-2' }} €</p>
+    <p class="total-item">Total TTC: {{ totalTTC() | number:'1.2-2' }} €</p>
+  </div>
+</div>

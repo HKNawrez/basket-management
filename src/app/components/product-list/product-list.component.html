@@ -1,0 +1,28 @@
+<h1>Kata Panier</h1>
+<div class="header">
+  <select class="filter-select" (change)="filterByCategory($event)">
+    <option value="">Filtre : catégorie</option>
+    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+  </select>
+  <div class="basket-container">
+    <button class="basket-button" (click)="goToPanier()">Panier {{ itemCount }}</button>
+  </div>
+</div>
+<div class="product-list">
+  <div *ngFor="let product of filteredProducts" class="product-card">
+    <h3>{{ product.productName }}</h3>
+    <p>Catégorie: {{ product.category }}</p>
+    <p>Prix unitaire TTC: {{ product.price | multiTransform:'calculateHTPrice':product.category:product.isImported| number:'1.2-2'}} €</p>
+    <div class="quantity-controls">
+      <div class="not-available">
+        <p *ngIf="product.quantity === 0">Non disponible</p>
+      </div>
+      <div *ngIf="product.quantity > 0">
+        <button (click)="decreaseQuantity(product.id)">-</button>
+        <span>Qte : {{ product.selectedQuantity }}</span>
+        <button (click)="increaseQuantity(product.id)" [disabled]="product.selectedQuantity >= product.quantity">+</button>
+      </div>
+      <button (click)="addToBasket(product)" [disabled]="product.quantity === 0" class="add-to-basket">Ajouter</button>
+    </div>
+  </div>
+</div>

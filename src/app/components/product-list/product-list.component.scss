@@ -1,0 +1,110 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.basket-container {
+  margin-left: auto;
+}
+.basket-button {
+  background-color: white;
+  color: #007bff;
+  border: 2px solid #007bff;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.basket-button:hover {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+}
+
+.filter-select {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  height: 42px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+
+.product-card {
+  border: 3px solid #e5a031;
+  padding: 20px;
+  /* border-radius: 5px; */
+  width: calc(33.333% - 20px);/* 3 cards per row with gap */
+  box-sizing: border-box;
+  background: #f5e9cc;
+}
+.product-card h3,
+.product-card p {
+  color: #007bff; /* Texte bleu */
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  padding: 5px 10px;
+}
+
+.quantity-controls span {
+  margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%; /* 1 card per row on mobile */
+  }
+}
+
+.total-item {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+button.add-to-basket:disabled {
+  background-color: #cccccc; /* Fond gris */
+  cursor: not-allowed; /* Curseur non autorisé */
+  border: 1px solid #999999; /* Bordure grise */
+  opacity: 0.2; /* Légère transparence pour indiquer l'état désactivé */
+
+
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+button.add-to-basket {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Transition pour un effet de survol */
+}
+
+.quantity-controls button.add-to-basket:hover {
+  background-color: #218838; /* Fond vert foncé au survol */
+}
+.not-available p{
+  color: #ccc;
+}
+
+
+
+
