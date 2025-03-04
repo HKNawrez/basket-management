@@ -41,7 +41,6 @@ export class BasketService {
       }
     }
     this.saveItems();
-    console.log(this.items.length)
   }
 
 
