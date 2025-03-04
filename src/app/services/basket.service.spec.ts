@@ -9,12 +9,11 @@ describe('BasketService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(BasketService);
 
-    // Initialize localStorage for each test
     localStorage.setItem('basketItems', JSON.stringify([]));
   });
 
   afterEach(() => {
-    localStorage.clear(); // Clear localStorage after each test
+    localStorage.clear();
   });
 
   it('should be created', () => {

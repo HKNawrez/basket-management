@@ -16,13 +16,12 @@ describe('ProductService', () => {
     service = TestBed.inject(ProductService);
     httpMock = TestBed.inject(HttpTestingController);
 
-    // Initialize localStorage for each test
     localStorage.setItem('basketQuantities', JSON.stringify({}));
   });
 
   afterEach(() => {
     httpMock.verify();
-    localStorage.clear(); // Clear localStorage after each test
+    localStorage.clear();
   });
 
   it('should be created', () => {
@@ -99,7 +98,7 @@ describe('ProductService', () => {
 
     const updatedProduct: Product = { id: 1, productName: 'Updated Product 1', price: 15, category: 'category1',isImported:true,  quantity: 150, selectedQuantity: 1 };
 
-    jest.spyOn(service as any, 'saveProducts'); // Spy on the private saveProducts method
+    jest.spyOn(service as any, 'saveProducts');
 
     service.updateProduct(updatedProduct);
 

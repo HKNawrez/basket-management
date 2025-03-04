@@ -44,7 +44,7 @@
 .product-card {
   border: 3px solid var(--secondary-color);
   padding: 20px;
-  width: calc(33.333% - 20px); /* 3 cards per row with gap */
+  width: calc(33.333% - 20px);
   box-sizing: border-box;
   background: var(--background-color);
 }
@@ -68,7 +68,7 @@
 
 @media (max-width: 768px) {
   .product-card {
-    width: 100%; /* 1 card per row on mobile */
+    width: 100%;
   }
 }
 
@@ -80,10 +80,10 @@
   border-radius: 5px;
 }
 button.add-to-basket:disabled {
-  background-color: var(--disabled-background-color); /* Fond gris */
-  cursor: not-allowed; /* Curseur non autorisé */
-  border: 1px solid var(--disabled-border-color); /* Bordure grise */
-  opacity: 0.2; /* Légère transparence pour indiquer l'état désactivé */
+  background-color: var(--disabled-background-color);
+  cursor: not-allowed;
+  border: 1px solid var(--disabled-border-color);
+  opacity: 0.2;
   padding: 5px 10px;
   transition: background-color 0.3s;
 }
@@ -93,7 +93,7 @@ button.add-to-basket {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Transition pour un effet de survol */
+  transition: background-color 0.3s;
 }
 
 .quantity-controls button.add-to-basket:hover {
