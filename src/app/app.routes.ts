@@ -5,9 +5,22 @@ import {BasketGuardService} from './services/basket-guard.service';
 import {EmptyBasketComponent} from './components/empty-basket/empty-basket.component';
 
 export const routes: Routes = [
-
-  { path: 'product-list', component: ProductListComponent },
-  { path: 'empty-basket', component: EmptyBasketComponent },
-  { path: 'basket', component: BasketComponent , canActivate: [BasketGuardService] },
-  { path: '', redirectTo: '/product-list', pathMatch: 'full' }
+  {
+    path: 'product-list',
+    loadComponent: () => import('./components/product-list/product-list.component').then(m => m.ProductListComponent)
+  },
+  {
+    path: 'empty-basket',
+    loadComponent: () => import('./components/empty-basket/empty-basket.component').then(m => m.EmptyBasketComponent)
+  },
+  {
+    path: 'basket',
+    loadComponent: () => import('./components/basket/basket.component').then(m => m.BasketComponent),
+    canActivate: [BasketGuardService]
+  },
+  {
+    path: '',
+    redirectTo: '/product-list',
+    pathMatch: 'full'
+  }
 ];

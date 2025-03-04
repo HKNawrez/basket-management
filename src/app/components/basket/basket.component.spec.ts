@@ -70,7 +70,7 @@ describe('BasketComponent', () => {
     component.items = mockItems;
 
     const totalTaxes = component.totalTaxes();
-    expect(totalTaxes).toBeGreaterThan(0); // Adjust this based on your tax calculation logic
+    expect(totalTaxes).toBeGreaterThan(0);
   });
 
   it('should calculate total TTC', () => {
@@ -81,7 +81,7 @@ describe('BasketComponent', () => {
     component.items = mockItems;
 
     const totalTTC = component.totalTTC();
-    expect(totalTTC).toBeGreaterThan(0); // Adjust this based on your TTC calculation logic
+    expect(totalTTC).toBeGreaterThan(0);
   });
 
 
