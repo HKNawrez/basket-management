@@ -17,7 +17,7 @@ describe('AppComponent', () => {
           { path: 'empty-basket', component: EmptyBasketComponent },
           { path: 'basket', component: BasketComponent , canActivate: [BasketGuardService] },
           { path: '', redirectTo: '/product-list', pathMatch: 'full' }
-        ]),        AppComponent // Import the standalone component here
+        ]),        AppComponent
       ],
     }).compileComponents();
     router = TestBed.inject(Router);

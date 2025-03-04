@@ -5,5 +5,5 @@ export interface Product {
   quantity: number;
   isImported: boolean;
   category: string;
-  selectedQuantity: number; // Ajout de la propriété selectedQuantity
+  selectedQuantity: number;
 }

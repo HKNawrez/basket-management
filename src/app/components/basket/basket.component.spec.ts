@@ -42,7 +42,7 @@ describe('BasketComponent', () => {
     router = TestBed.inject(Router);
   });
   afterEach(() => {
-    localStorage.clear(); // Clear localStorage after each test
+    localStorage.clear();
   });
   it('should create', () => {
     expect(component).toBeTruthy();

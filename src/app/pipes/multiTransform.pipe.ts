@@ -32,7 +32,6 @@ export class MultiTransformPipe implements PipeTransform {
   private  calculateTax(price: number, category: string, isImported: boolean): number {
       let taxRate = 0;
 
-      // Déterminer la taxe de base en fonction de la catégorie
       if (category === CATEGORY_FOOD || category === CATEGORY_MEDICINE) {
         taxRate = TAX_RATE_FOOD_MEDICINE;
       } else if (category === CATEGORY_BOOKS) {
@@ -41,14 +40,12 @@ export class MultiTransformPipe implements PipeTransform {
         taxRate = TAX_RATE_OTHER;
       }
 
-      // Ajouter la taxe additionnelle pour les produits importés
       if (isImported) {
         taxRate += IMPORT_DUTY;
       }
 
-      // Calculer la taxe totale
       const totalTax = price * taxRate / 100;
-      // Arrondir la taxe aux 5 centimes supérieurs
+
       const roundedTax = Math.ceil(totalTax * ROUNDING_FACTOR) / ROUNDING_FACTOR;
       return roundedTax;
     }
