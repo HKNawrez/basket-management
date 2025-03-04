@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'product-list', component: ProductListComponent },
   { path: 'empty-basket', component: EmptyBasketComponent },
   { path: 'basket', component: BasketComponent , canActivate: [BasketGuardService] },
-  { path: '', redirectTo: '/product-list', pathMatch: 'full' }  // Redirection par défaut
+  { path: '', redirectTo: '/product-list', pathMatch: 'full' }
 ];
