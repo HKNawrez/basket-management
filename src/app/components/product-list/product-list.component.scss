@@ -1,3 +1,5 @@
+@import '../../../colors.css';
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -9,9 +11,9 @@
   margin-left: auto;
 }
 .basket-button {
-  background-color: white;
-  color: #007bff;
-  border: 2px solid #007bff;
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
@@ -20,16 +22,16 @@
 }
 
 .basket-button:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white-color);;
   text-decoration: none;
 }
 
 .filter-select {
   padding: 10px 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--disabled-background-color);
   height: 42px;
-  background-color: #f0f0f0;
+  background-color:var(--filter-select-background-color);
   border-radius: 5px;
 }
 
@@ -39,18 +41,16 @@
   gap: 30px;
 }
 
-
 .product-card {
-  border: 3px solid #e5a031;
+  border: 3px solid var(--secondary-color);
   padding: 20px;
-  /* border-radius: 5px; */
-  width: calc(33.333% - 20px);/* 3 cards per row with gap */
+  width: calc(33.333% - 20px); /* 3 cards per row with gap */
   box-sizing: border-box;
-  background: #f5e9cc;
+  background: var(--background-color);
 }
 .product-card h3,
 .product-card p {
-  color: #007bff; /* Texte bleu */
+  color: var(--primary-color);
 }
 .quantity-controls {
   display: flex;
@@ -74,24 +74,22 @@
 
 .total-item {
   font-weight: bold;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white-color);
   padding: 10px;
   border-radius: 5px;
 }
 button.add-to-basket:disabled {
-  background-color: #cccccc; /* Fond gris */
+  background-color: var(--disabled-background-color); /* Fond gris */
   cursor: not-allowed; /* Curseur non autorisé */
-  border: 1px solid #999999; /* Bordure grise */
+  border: 1px solid var(--disabled-border-color); /* Bordure grise */
   opacity: 0.2; /* Légère transparence pour indiquer l'état désactivé */
-
-
   padding: 5px 10px;
   transition: background-color 0.3s;
 }
 button.add-to-basket {
-  background-color: #28a745;
-  color: white;
+  background-color: var(--button-background-color);
+  color: var(--white-color);
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -99,12 +97,8 @@ button.add-to-basket {
 }
 
 .quantity-controls button.add-to-basket:hover {
-  background-color: #218838; /* Fond vert foncé au survol */
+  background-color: var(--button-background-color);
 }
-.not-available p{
-  color: #ccc;
+.not-available p {
+  color: var(--disabled-background-color);
 }
-
-
-
-

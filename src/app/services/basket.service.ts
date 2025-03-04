@@ -41,6 +41,7 @@ export class BasketService {
       }
     }
     this.saveItems();
+    console.log(this.items.length)
   }
 
 
@@ -51,6 +52,6 @@ export class BasketService {
   }
 
   isEmpty() {
-    return this.items.length === 0;
+    return this.getItemCount() === 0;
   }
 }

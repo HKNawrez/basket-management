@@ -31,11 +31,11 @@ export class ProductListComponent implements OnInit {
       (data) => {
         this.products = data.map(product => ({
           ...product,
-          selectedQuantity: 1, // Initialiser selectedQuantity à 1
-          quantity: product.quantity - this.productService.getBasketQuantity(product.id) // Ajuster la quantité disponible
+          selectedQuantity: 1,
+          quantity: product.quantity - this.productService.getBasketQuantity(product.id)
         }));
-        this.productService.setProducts(this.products); // Sauvegarder les produits dans le service
-        this.filteredProducts = this.products; // Initialize with all data
+        this.productService.setProducts(this.products);
+        this.filteredProducts = this.products;
       },
       (error) => {
         console.error('Error fetching data', error);
@@ -53,8 +53,8 @@ export class ProductListComponent implements OnInit {
       }
     }
     this.itemCount = this.basketService.getItemCount();
-    this.productService.updateProduct(product); // Sauvegarder les produits mis à jour dans le service
-    this.productService.addToBasket(product, quantity); // Mettre à jour les quantités dans le panier
+    this.productService.updateProduct(product);
+    this.productService.addToBasket(product, quantity);
   }
 
   filterByCategory(event: Event): void {
@@ -75,7 +75,7 @@ export class ProductListComponent implements OnInit {
     const product = this.products.find(p => p.id === productId);
     if (product && product.selectedQuantity! < product.quantity) {
       product.selectedQuantity!++;
-      this.productService.updateProduct(product); // Mettre à jour la quantité dans le service
+      this.productService.updateProduct(product);
     }
   }
 
@@ -83,7 +83,7 @@ export class ProductListComponent implements OnInit {
     const product = this.products.find(p => p.id === productId);
     if (product && product.selectedQuantity! > 1) {
       product.selectedQuantity!--;
-      this.productService.updateProduct(product); // Mettre à jour la quantité dans le service
+      this.productService.updateProduct(product);
     }
   }
 

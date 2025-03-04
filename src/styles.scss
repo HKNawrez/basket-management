@@ -1,5 +1,7 @@
+@import 'colors.css';
+
 h1 {
-  background-color: #ffffe0;
+  background-color: var(--background-color);
   padding: 10px;
   border-radius: 5px;
   display: inline-block;

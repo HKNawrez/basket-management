@@ -19,8 +19,6 @@ export class BasketComponent implements OnInit {
   isPanierVide=false;
   constructor(private basketService: BasketService,   private productService: ProductService,
               private router: Router) {
-
-
   }
 
   ngOnInit(): void {
@@ -28,10 +26,8 @@ export class BasketComponent implements OnInit {
     this.basketService.items$.subscribe(items => {
       this.items = items.filter(item => item.quantity > 0)
         .sort((a, b) => a.id - b.id);
-
     });
     this.isPanierVide = this.items.length === 0;
-
   }
 
 
@@ -50,7 +46,7 @@ export class BasketComponent implements OnInit {
     if (this.items.length === 0) {
       this.isPanierVide = true;
     }
-    this.productService.removeFromBasket(item, 1); // Mettre à jour les quantités dans le panier
+    this.productService.removeFromBasket(item, 1);
   }
 
   goToHome(): void {

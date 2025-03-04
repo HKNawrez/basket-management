@@ -1,3 +1,5 @@
+@import '../../../colors.css';
+
 .panier-container {
   display: flex;
   justify-content: space-between;
@@ -5,9 +7,9 @@
 
 button.home-button {
   padding: 10px 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--filter-select-background-color);
   height: 42px;
-  background-color: #f0f0f0;
+  background-color: var(--filter-select-background-color);
   border-radius: 5px;
   margin-bottom: 20px;
 }
@@ -29,9 +31,9 @@ button.home-button {
 }
 
 .total-item {
-  border: 2px solid blue;
+  border: 2px solid var(--primary-color);
   padding: 10px;
-  color: blue;
+  color: var(--primary-color);
   margin-bottom: 10px;
 }
 
@@ -46,9 +48,9 @@ h2 + button {
 .remove-button {
   width: 24px;
   height: 24px;
-  border: 2px solid red;
+  border: 2px solid var(--remove-button-color);
   border-radius: 50%;
-  background-color: white;
+  background-color: var(--white-color);
   position: relative;
   cursor: pointer;
 }
@@ -60,22 +62,22 @@ h2 + button {
   left: 50%;
   width: 12px;
   height: 2px;
-  background-color: red;
+  background-color: var(--remove-button-color);
   transform: translate(-50%, -50%);
 }
 
 .product-line {
   display: flex;
-  flex-direction: row; /* Aligne les éléments en ligne */
-  border: 2px solid blue;
+  flex-direction: row;
+  border: 2px solid var(--primary-color);
   padding: 10px;
-  color: blue;
+  color: var(--primary-color);
   width: 100%;
-  flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
-  gap: 10px; /* Espace entre les éléments */
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .product-info {
-  flex: 1; /* Permet aux éléments de prendre une part égale de l'espace disponible */
-  min-width: 150px; /* Largeur minimale pour chaque élément */
+  flex: 1;
+  min-width: 150px;
 }

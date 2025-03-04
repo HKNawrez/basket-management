@@ -11,7 +11,7 @@ export class BasketGuardService implements CanActivate {
 
   canActivate(): boolean {
     if (this.basketService.isEmpty()) {
-      this.router.navigate(['/empty-basket']); // Redirige vers une page spécifique si le panier est vide
+      this.router.navigate(['/empty-basket']);
       return false;
     }
     return true;

@@ -1,0 +1,12 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #e5a031;
+  --background-color: #f5e9cc;
+  --button-background-color: #28a745;
+  --disabled-background-color: #cccccc;
+  --disabled-border-color: #999999;
+  --white-color: #ffffff;
+  --filter-select-background-color: #f0f0f0;
+  --remove-button-color: red;
+  --product-line-color: blue;
+}

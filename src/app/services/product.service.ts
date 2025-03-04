@@ -25,7 +25,7 @@ export class ProductService {
         if (products && products.length > 0) {
           this.items = products.map(product => ({
             ...product,
-            selectedQuantity: product.selectedQuantity || 1 // Initialiser selectedQuantity à 1 si non défini
+            selectedQuantity: product.selectedQuantity || 1
           }));
           this.saveProducts();
         }
