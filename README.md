@@ -23,7 +23,6 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 
    ```bash
    git clone https://github.com/HKNawrez/basket-management.git
-   cd votre-repo
    ```
 
 2. Installez les dépendances :
