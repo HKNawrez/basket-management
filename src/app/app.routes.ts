@@ -1,8 +1,7 @@
-import {Routes} from '@angular/router';
-import {BasketComponent} from './components/basket/basket.component';
-import {ProductListComponent} from './components/product-list/product-list.component';
-import {BasketGuardService} from './services/basket-guard.service';
-import {EmptyBasketComponent} from './components/empty-basket/empty-basket.component';
+import { Routes } from '@angular/router';
+import { BasketComponent } from './components/basket/basket.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { EmptyBasketComponent } from './components/empty-basket/empty-basket.component';
 
 export const routes: Routes = [
   {
@@ -15,8 +14,7 @@ export const routes: Routes = [
   },
   {
     path: 'basket',
-    loadComponent: () => import('./components/basket/basket.component').then(m => m.BasketComponent),
-    canActivate: [BasketGuardService]
+    loadComponent: () => import('./components/basket/basket.component').then(m => m.BasketComponent)
   },
   {
     path: '',

@@ -2,9 +2,7 @@ import {TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AppComponent} from './app.component';
 import {ProductListComponent} from './components/product-list/product-list.component';
-import {EmptyBasketComponent} from './components/empty-basket/empty-basket.component';
 import {BasketComponent} from './components/basket/basket.component';
-import {BasketGuardService} from './services/basket-guard.service';
 import {Router} from '@angular/router';
 
 describe('AppComponent', () => {
@@ -14,8 +12,7 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: 'product-list', component: ProductListComponent },
-          { path: 'empty-basket', component: EmptyBasketComponent },
-          { path: 'basket', component: BasketComponent , canActivate: [BasketGuardService] },
+          { path: 'basket', component: BasketComponent },
           { path: '', redirectTo: '/product-list', pathMatch: 'full' }
         ]),        AppComponent
       ],

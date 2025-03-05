@@ -1,12 +1,12 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {BasketComponent} from './basket.component';
-import {BasketService} from '../../services/basket.service';
-import {ProductService} from '../../services/product.service';
-import {MultiTransformPipe} from '../../pipes/multiTransform.pipe';
-import {of} from 'rxjs';
-import {RouterTestingModule} from '@angular/router/testing';
-import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BasketComponent } from './basket.component';
+import { BasketService } from '../../services/basket.service';
+import { ProductService } from '../../services/product.service';
+import { MultiTransformPipe } from '../../pipes/multiTransform.pipe';
+import { of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 describe('BasketComponent', () => {
   let component: BasketComponent;
@@ -19,7 +19,9 @@ describe('BasketComponent', () => {
     const basketServiceMock = {
       items$: of([]),
       removeItem: jest.fn(),
-      getItemCount: jest.fn()
+      getItemCount: jest.fn(),
+      calculateTotalTaxes: jest.fn(),
+      calculateTotalTTC: jest.fn()
     };
 
     const productServiceMock = {
@@ -28,7 +30,6 @@ describe('BasketComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [CommonModule, RouterTestingModule, MultiTransformPipe],
-      declarations: [],
       providers: [
         { provide: BasketService, useValue: basketServiceMock },
         { provide: ProductService, useValue: productServiceMock }
@@ -41,9 +42,11 @@ describe('BasketComponent', () => {
     productService = TestBed.inject(ProductService) as jest.Mocked<ProductService>;
     router = TestBed.inject(Router);
   });
+
   afterEach(() => {
     localStorage.clear();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -68,9 +71,10 @@ describe('BasketComponent', () => {
       { id: 2, productName: 'Product 2', category: 'CATEGORY_FOOD', quantity: 5, selectedQuantity: 1, price: 50, isImported: true }
     ];
     component.items = mockItems;
+    basketService.calculateTotalTaxes.mockReturnValue(15);
 
     const totalTaxes = component.totalTaxes();
-    expect(totalTaxes).toBeGreaterThan(0);
+    expect(totalTaxes).toBe(15);
   });
 
   it('should calculate total TTC', () => {
@@ -79,12 +83,11 @@ describe('BasketComponent', () => {
       { id: 2, productName: 'Product 2', category: 'CATEGORY_FOOD', quantity: 5, selectedQuantity: 1, price: 50, isImported: true }
     ];
     component.items = mockItems;
+    basketService.calculateTotalTTC.mockReturnValue(200);
 
     const totalTTC = component.totalTTC();
-    expect(totalTTC).toBeGreaterThan(0);
+    expect(totalTTC).toBe(200);
   });
-
-
 
   it('should navigate to home', () => {
     const navigateSpy = jest.spyOn(router, 'navigate');

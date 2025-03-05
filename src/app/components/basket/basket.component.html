@@ -3,7 +3,7 @@
 <button class="home-button" (click)="goToHome()">Accueil</button>
 </div>
 <div *ngIf="isPanierVide">
-  <p>Panier vide</p>
+  <h2 style="text-align: center;">Votre panier est vide :(</h2>
 </div>
 <div *ngIf="!isPanierVide"  class="panier-container">
   <div class="product-list">

@@ -1,8 +1,9 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, catchError, Observable, of, tap} from 'rxjs';
-import {Product} from '../models/product.model';
-import {PRODUCTS_URL} from '../constants';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { Product } from '../models/product.model';
+import { PRODUCTS_URL } from '../constants';
+import {BasketService} from './basket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,6 @@ export class ProductService {
   private items: Product[] = [];
   private productsUrl = PRODUCTS_URL;
   private productSubject = new BehaviorSubject<Product[]>([]);
-  products$ = this.productSubject.asObservable();
   private basketQuantities: { [productId: number]: number } = {};
 
   constructor(private http: HttpClient) {
@@ -75,7 +75,27 @@ export class ProductService {
     }
   }
 
-  addToBasket(product: Product, quantity: number): void {
+  addToBasket(product: Product, basketService: BasketService): void {
+    const quantity = product.selectedQuantity || 1;
+    if (product.quantity >= quantity) {
+      for (let i = 0; i < quantity; i++) {
+        basketService.addItem(product);
+        product.quantity--;
+      }
+    }
+    basketService.updateItemCount();
+    this.updateProduct(product);
+    this.updateLocalBasketQuantities(product, quantity);
+  }
+
+  filterProductsByCategory(category: string): Product[] {
+    if (category) {
+      return this.items.filter(item => item.category === category);
+    }
+    return this.items;
+  }
+
+  updateLocalBasketQuantities(product: Product, quantity: number): void {
     if (!this.basketQuantities[product.id]) {
       this.basketQuantities[product.id] = 0;
     }
@@ -83,9 +103,22 @@ export class ProductService {
     this.saveBasketQuantities();
   }
 
-  getBasketQuantity(productId: number): number {
-    return this.basketQuantities[productId] || 0;
+  increaseProductQuantity(productId: number): void {
+    const product = this.items.find(p => p.id === productId);
+    if (product && product.selectedQuantity! < product.quantity) {
+      product.selectedQuantity!++;
+      this.updateProduct(product);
+    }
   }
+
+  decreaseProductQuantity(productId: number): void {
+    const product = this.items.find(p => p.id === productId);
+    if (product && product.selectedQuantity! > 1) {
+      product.selectedQuantity!--;
+      this.updateProduct(product);
+    }
+  }
+
   removeFromBasket(product: Product, quantity: number): void {
     if (this.basketQuantities[product.id]) {
       this.basketQuantities[product.id] -= quantity;
@@ -96,11 +129,16 @@ export class ProductService {
       this.updateProductQuantity(product.id, quantity);
     }
   }
+
   private updateProductQuantity(productId: number, quantity: number): void {
     const product = this.items.find(p => p.id === productId);
     if (product) {
       product.quantity += quantity;
       this.updateProduct(product);
     }
+  }
+
+  getBasketQuantity(productId: number): number {
+    return this.basketQuantities[productId] || 0;
   }
 }

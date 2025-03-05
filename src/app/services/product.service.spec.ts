@@ -1,8 +1,8 @@
-import {TestBed} from '@angular/core/testing';
-import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
-import {ProductService} from './product.service';
-import {Product} from '../models/product.model';
-import {PRODUCTS_URL} from '../constants';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ProductService } from './product.service';
+import { Product } from '../models/product.model';
+import { PRODUCTS_URL } from '../constants';
 
 describe('ProductService', () => {
   let service: ProductService;
@@ -30,8 +30,8 @@ describe('ProductService', () => {
 
   it('should fetch products from API', () => {
     const mockProducts: Product[] = [
-      { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true, quantity: 100, selectedQuantity: 1 },
-      { id: 2, productName: 'Product 2', price: 20, category: 'category2',isImported:true, quantity: 200, selectedQuantity: 1 }
+      { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 },
+      { id: 2, productName: 'Product 2', price: 20, category: 'category2', isImported: true, quantity: 200, selectedQuantity: 1 }
     ];
 
     service.getProducts().subscribe(products => {
@@ -46,7 +46,7 @@ describe('ProductService', () => {
 
   it('should save and load products from localStorage', () => {
     const mockProducts: Product[] = [
-      { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true,quantity: 100, selectedQuantity: 1 }
+      { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 }
     ];
 
     service.setProducts(mockProducts);
@@ -57,25 +57,25 @@ describe('ProductService', () => {
   });
 
   it('should add product to basket and save quantities', () => {
-    const mockProduct: Product = { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true, quantity: 100, selectedQuantity: 1 };
+    const mockProduct: Product = { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 };
 
-    service.addToBasket(mockProduct, 2);
-    expect(service.getBasketQuantity(mockProduct.id)).toBe(2);
-    expect(localStorage.getItem('basketQuantities')).toEqual(JSON.stringify({ 1: 2 }));
-  });
-
-  it('should remove product from basket and update quantities', () => {
-    const mockProduct: Product = { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true, quantity: 100, selectedQuantity: 1 };
-
-    service.addToBasket(mockProduct, 2);
-    service.removeFromBasket(mockProduct, 1);
+    service.addToBasket(mockProduct, { addItem: jest.fn(), updateItemCount: jest.fn() } as any);
     expect(service.getBasketQuantity(mockProduct.id)).toBe(1);
     expect(localStorage.getItem('basketQuantities')).toEqual(JSON.stringify({ 1: 1 }));
   });
 
+  it('should remove product from basket and update quantities', () => {
+    const mockProduct: Product = { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 };
+
+    service.addToBasket(mockProduct, { addItem: jest.fn(), updateItemCount: jest.fn() } as any);
+    service.removeFromBasket(mockProduct, 1);
+    expect(service.getBasketQuantity(mockProduct.id)).toBe(0);
+    expect(localStorage.getItem('basketQuantities')).toEqual(JSON.stringify({ 1: 0 }));
+  });
+
   it('should handle API error and load products from localStorage', () => {
     const mockProducts: Product[] = [
-      { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true, quantity: 100, selectedQuantity: 1 }
+      { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 }
     ];
 
     localStorage.setItem('productItems', JSON.stringify(mockProducts));
@@ -90,13 +90,13 @@ describe('ProductService', () => {
 
   it('should update product in items array and call saveProducts', () => {
     const initialProducts: Product[] = [
-      { id: 1, productName: 'Product 1', price: 10, category: 'category1',isImported:true, quantity: 100, selectedQuantity: 1 },
-      { id: 2, productName: 'Product 2', price: 20, category: 'category2',isImported:true, quantity: 200, selectedQuantity: 1 }
+      { id: 1, productName: 'Product 1', price: 10, category: 'category1', isImported: true, quantity: 100, selectedQuantity: 1 },
+      { id: 2, productName: 'Product 2', price: 20, category: 'category2', isImported: true, quantity: 200, selectedQuantity: 1 }
     ];
 
     service.setProducts(initialProducts);
 
-    const updatedProduct: Product = { id: 1, productName: 'Updated Product 1', price: 15, category: 'category1',isImported:true,  quantity: 150, selectedQuantity: 1 };
+    const updatedProduct: Product = { id: 1, productName: 'Updated Product 1', price: 15, category: 'category1', isImported: true, quantity: 150, selectedQuantity: 1 };
 
     jest.spyOn(service as any, 'saveProducts');
 
